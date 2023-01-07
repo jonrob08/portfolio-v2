@@ -1,5 +1,8 @@
 import * as THREE from "three"
+
 import Sizes from "./Utils/Sizes"
+
+import Camera from "./Camera"
 
 export default class Experience {
     static instance
@@ -11,5 +14,6 @@ export default class Experience {
         this.canvas = canvas
         this.scene = new THREE.Scene()
         this.sizes = new Sizes()
+        this.camera = new Camera()
     }
 }
