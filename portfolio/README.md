@@ -11,6 +11,9 @@ I'm looking to make a clean looking portfolio site utilizing Three.js. I've been
 4. ???
 5. Profit []
 
+## Methodologies Used
+1. Singleton design pattern - pattern that restricts the instantiation of a class to one object. This is particularly useful when exactly one object is needed to coordinate actions across the app, in this case I'm using Experience.js. The singleton design pattern is implemented by creating a class with a method that creates a new instance of the class if one does not exist. If an instance already exists, it simply returns a reference to that object. 
+
 ## Technologies Used
 1. Vite - this is the build tool I'll be using for my project. It is fast and lightweight, and focuses on provides really good bundling and has great documentation.
 2. Three.js - this is a JavaScript library that lets you create 3D graphics in the browser using WebGL. It provides a simple, easy-to-use interface for creating and manipulating 3D objects in a 3D scene. 
