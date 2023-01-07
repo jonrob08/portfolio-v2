@@ -23,7 +23,8 @@ export default class Time extends EventEmitter {
     // Elapsed is useful if I want to play something after the scene starts
     this.elapsed = this.current - this.start
 
-    // console.log(this.delta)
+    console.log(this.delta)
+    this.emit("update")
     window.requestAnimationFrame(() => this.update())
   }
 }

@@ -19,5 +19,15 @@ export default class Experience {
         this.sizes = new Sizes()
         this.camera = new Camera()
         this.renderer = new Renderer()
+
+        // .on listens to the created event
+        this.time.on("update", ()=>{
+            this.update()
+        })
+    }
+
+    update(){
+        this.camera.update()
+        this.renderer.update()
     }
 }
