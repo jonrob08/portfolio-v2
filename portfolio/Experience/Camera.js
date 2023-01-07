@@ -1,3 +1,4 @@
+import * as THREE from "three";
 import Experience from "./Experience.js";
 
 // The Camera class represents a camera in the 3D scene. It has a constructor method that is called when a new instance of the class is created.
@@ -24,15 +25,34 @@ export default class Camera {
     );
     this.scene.add(this.perspectiveCamera);
   }
+
   createOrthographicCamera() {
     this.frustrum = 5;
     this.orthographicCamera = new THREE.OrthographicCamera(
+      // left
       (-this.sizes.aspect * this.sizes.frustrum) / 2,
+      // right
       (this.sizes.aspect * this.sizes.frustrum) / 2,
+      // top
       this.sizes.frustrum / 2,
+      // bottom
       -this.sizes.frustrum / 2,
       -100,
+      100
     );
     this.scene.add(this.orthographicCamera);
+  }
+
+  resize() {
+    // updating perspective camera on resize
+    this.perspectiveCamera.aspect = this.sizes.aspect
+    this.perspectiveCamera.updateProjectionMatrix()
+
+    // updating orthographic camera on resize
+    this.orthographicCamera.left = (-this.sizes.aspect * this.sizes.frustrum) / 2
+    this.orthographicCamera.right = (this.sizes.aspect * this.sizes.frustrum) / 2
+    this.orthographicCamera.top = this.sizes.frustrum / 2
+    this.orthographicCamera.bottom = -this.sizes.frustrum / 2
+    this.orthographicCamera.updateProjectionMatrix()
   }
 }
