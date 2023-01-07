@@ -21,9 +21,17 @@ export default class Experience {
         this.renderer = new Renderer()
 
         // .on listens to the created event
+        this.time.on("resize", ()=>{
+            this.resize()
+        })
         this.time.on("update", ()=>{
             this.update()
         })
+    }
+    
+    resize(){
+        this.camera.resize()
+        this.renderer.resize()
     }
 
     update(){
