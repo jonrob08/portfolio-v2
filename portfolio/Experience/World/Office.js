@@ -14,6 +14,8 @@ export default class Office {
 
   setModel(){
     this.scene.add(this.actualOffice)
+    this.actualOffice.scale.set(0.11, 0.11, 0.11)
+    // this.actualOffice.rotation.y = Math.PI
   }
 
   resize() {}
