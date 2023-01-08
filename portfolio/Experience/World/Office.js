@@ -8,7 +8,12 @@ export default class Office {
     this.resources = this.experience.resources
     this.office = this.resources.items.office
     this.actualOffice = this.office.scene
-    console.log(this.actualOffice)
+
+    this.setModel()
+  }
+
+  setModel(){
+    this.scene.add(this.actualOffice)
   }
 
   resize() {}
