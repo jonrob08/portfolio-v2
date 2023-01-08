@@ -56,6 +56,8 @@ export default class Resources extends EventEmitter{
                 this.videoTexture[asset.name].magFilter = THREE.NearestFilter
                 this.videoTexture[asset.name].generateMipmaps = false
                 this.videoTexture[asset.name].encoding = THREE.sRGBEncoding
+
+                this.singleAssetLoaded(asset, this.videoTexture[asset.name])
             }
         }
     }
@@ -64,10 +66,12 @@ export default class Resources extends EventEmitter{
         this.items[asset.name] = file
         this.loaded++
 
-        console.log(file)
+        console.log("asset is loading")
         
         if (this.loaded === this.queue){
             // Create world when assets are loaded
+            console.log("all assets are done")
+
             this.emit("ready")
         }
     }

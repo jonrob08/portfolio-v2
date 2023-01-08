@@ -10,8 +10,13 @@ export default class World {
     this.scene = this.experience.scene;
     this.canvas = this.experience.canvas;
     this.camera = this.experience.camera;
+    this.resources = this.experience.resources
 
-    this.office = new Office()
+    this.resources.on("ready", () => {
+      this.office = new Office()
+      console.log("office created successfully")
+    })
+
   }
 
   resize() {
