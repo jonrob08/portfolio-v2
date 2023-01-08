@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import Experience from "../Experience";
+import Environment from "./Environment";
 
 import Office from "./Office";
 
@@ -13,6 +14,7 @@ export default class World {
     this.resources = this.experience.resources
 
     this.resources.on("ready", () => {
+      this.environment = new Environment()
       this.office = new Office()
     })
 
