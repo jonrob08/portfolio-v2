@@ -14,7 +14,6 @@ export default class World {
 
     this.resources.on("ready", () => {
       this.office = new Office()
-      console.log("office created successfully")
     })
 
   }
