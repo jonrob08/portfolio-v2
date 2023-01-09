@@ -6,10 +6,12 @@ export default class Office {
     this.experience = new Experience();
     this.scene = this.experience.scene
     this.resources = this.experience.resources
+    this.time = this.experience.time
     this.office = this.resources.items.office
     this.actualOffice = this.office.scene
 
     this.setModel()
+    this.setAnimation()
   }
 
   setModel(){
@@ -46,7 +48,16 @@ export default class Office {
     
   }
 
+  setAnimation() {
+    this.mixer = new THREE.AnimationMixer(this.actualOffice)
+    this.swim = this.mixer.clipAction(this.office.animations[0])
+    console.log(this.office)
+    this.swim.play()
+  }
+
   resize() {}
 
-  update() {}
+  update() {
+    this.mixer.update(this.time.delta)
+  }
 }

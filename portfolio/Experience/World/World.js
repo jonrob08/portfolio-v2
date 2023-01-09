@@ -25,6 +25,8 @@ export default class World {
   }
 
   update() {
-
+    if(this.office){
+      this.office.update()
+    }
   }
 }
