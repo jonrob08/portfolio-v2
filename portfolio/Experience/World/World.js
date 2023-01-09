@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import Experience from "../Experience";
+import Environment from "./Environment";
 
 import Office from "./Office";
 
@@ -10,8 +11,13 @@ export default class World {
     this.scene = this.experience.scene;
     this.canvas = this.experience.canvas;
     this.camera = this.experience.camera;
+    this.resources = this.experience.resources
 
-    this.office = new Office()
+    this.resources.on("ready", () => {
+      this.environment = new Environment()
+      this.office = new Office()
+    })
+
   }
 
   resize() {
@@ -19,6 +25,8 @@ export default class World {
   }
 
   update() {
-
+    if(this.office){
+      this.office.update()
+    }
   }
 }
