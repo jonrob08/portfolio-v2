@@ -23,6 +23,22 @@ export default class Office {
           groupChild.receiveShadow = true
         })
       }
+
+      if (child.name === "tanky"){
+        child.material = new THREE.MeshPhysicalMaterial()
+        child.material.roughness = 0
+        child.material.color.set(0x549dd2)
+        child.material.ior = 3
+        child.material.transmission = 1
+        child.material.opacity = 1
+      }
+
+      if (child.name === "Screen"){
+        child.material = new THREE.MeshBasicMaterial({
+          map: this.resources.items.screen
+        })
+      }
+
     })
 
     this.scene.add(this.actualOffice)
