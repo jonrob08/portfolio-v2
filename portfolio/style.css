@@ -13,7 +13,14 @@ html, body{
 :root{
   --text-black: #333332;
   --primary-color: #FAF4E5;
-  --primary-pink: #e5a1aa;
+  --primary-pink: #E3E1dE;
+  --primary-blue: #A8B2E2;
+  --secondary-blue: #737DAB;
+  --primary-red: #FFB8A7;
+  --primary-orange: #FFD47D;
+  --primary-yellow: #F9F871;
+  --primary-green: #6FFACC;
+  --secondary-green: #26C196;
 }
 
 /* -------------------- Experience  -------------------- */
@@ -60,6 +67,31 @@ html, body{
 
 .right{
   margin-left: auto;
+}
+
+.section-intro-wrapper{
+  position: relative;
+  padding: 20% 5%;
+  border-bottom: 2px solid var(--secondary-green);
+  padding-bottom: 400px;
+}
+
+.section-detail-wrapper{
+  position: relative;
+  padding: 20% 5%;
+}
+
+.section-heading {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.8;
+  margin-top: 64px;
+}
+
+.section-text{
+  line-height: 2;
+  margin-top: 18px;
+  font-size: 16px;
 }
 
 /* -------------------- Hero Section -------------------- */
