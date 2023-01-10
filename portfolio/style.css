@@ -10,6 +10,14 @@ html, body{
   font-family: "Montserrat", sans-serif;
 }
 
+h1,
+section,
+p,
+span,
+svg {
+  transition: background-color 0.3s, color 0.5s;
+}
+
 :root{
 
   /* Light Theme */
@@ -91,6 +99,7 @@ html, body{
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  color: var(--color-text)
 }
 
 .toggle-button {
@@ -148,10 +157,24 @@ html, body{
   margin-left: auto;
 }
 
-.section-intro-wrapper{
+.a-section-intro-wrapper{
+  position: relative;
+  padding: 20% 5%;
+  border-bottom: 2px solid var(--primary-red);
+  padding-bottom: 400px;
+}
+
+.b-section-intro-wrapper{
   position: relative;
   padding: 20% 5%;
   border-bottom: 2px solid var(--primary-blue);
+  padding-bottom: 400px;
+}
+
+.c-section-intro-wrapper{
+  position: relative;
+  padding: 20% 5%;
+  border-bottom: 2px solid var(--primary-green);
   padding-bottom: 400px;
 }
 
@@ -165,18 +188,20 @@ html, body{
   font-weight: 700;
   line-height: 1.8;
   margin-top: 64px;
+  color: var(--color-text)
 }
 
 .section-text{
   line-height: 2;
   margin-top: 18px;
   font-size: 16px;
+  color: var(--color-text)
 }
 
 /* Section Flair */
 .section-title {
   position: relative;
-  color: var(--text-black)
+  color: var(--primary-red)
 }
 
 .section-title-text{
@@ -188,6 +213,7 @@ html, body{
   transform: skewY(25deg);
   z-index: 5;
   text-transform: uppercase;
+  color: var(--color-text)
 }
 
 .uno,
@@ -244,28 +270,59 @@ html, body{
   position: absolute;
   bottom: 270px;
   left: 0;
+  color: var(--color-text)
 }
 
 .hero-secondary {
   position: absolute;
   top: calc(50% - 120px);
   right: 0;
+  color: var(--color-text)
 }
 
 .hero-main-title {
   font-size: 64px;
+  color: var(--color-text)
 }
 
 .hero-main-description {
   font-size: 20px;
+  color: var(--color-text)
 }
 
 .hero-secondary-subtitle {
   font-size: 32px;
   text-transform: uppercase;
+  color: var(--color-text)
 }
 
 .hero-secondary-subdescription {
   font-size: 32px;
   text-transform: uppercase;
+  color: var(--color-text)
+}
+
+/* Color Overrides */
+.blue-text {
+  color: var(--primary-blue)
+}
+
+.blue-border {
+  border: 2px solid var(--primary-blue)
+}
+
+.blue-background {
+  background-color: var(--primary-blue);
+}
+
+.green-text {
+  color: var(--primary-green);
+}
+
+.green-border {
+  border: 2px solid var(--primary-green)
+}
+
+.green-background {
+  background-color: var(--primary-green);
 }
