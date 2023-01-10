@@ -72,7 +72,7 @@ html, body{
 .section-intro-wrapper{
   position: relative;
   padding: 20% 5%;
-  border-bottom: 2px solid var(--secondary-green);
+  border-bottom: 2px solid var(--primary-blue);
   padding-bottom: 400px;
 }
 
@@ -93,6 +93,58 @@ html, body{
   margin-top: 18px;
   font-size: 16px;
 }
+
+/* Section Flair */
+.section-title {
+  position: relative;
+  color: var(--text-black)
+}
+
+.section-title-text{
+  position: relative;
+  display: block;
+  font-size: 40px;
+  font-weight: 500;
+  transform-origin: left;
+  transform: skewY(25deg);
+  z-index: 5;
+  text-transform: uppercase;
+}
+
+.uno,
+.dos,
+.tres {
+  position: absolute;
+  display: block;
+  width: 100%;
+  max-width: 275px;
+  height: 60px;
+  border: 1px solid var(--primary-red);
+  transform-origin: left;
+  transform: skewY(-25deg);
+}
+
+.uno {
+  top: 0px;
+}
+
+.dos {
+  top: 80px;
+}
+
+.tres {
+  top: 80px;
+  transform: skewY(25deg);
+  background-color: var(--primary-red);
+}
+
+.section-number{
+  position: absolute;
+  bottom: 15px;
+  right: 0;
+  color: var(--text-black);
+}
+
 
 /* -------------------- Hero Section -------------------- */
 
