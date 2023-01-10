@@ -4,6 +4,7 @@ import Experience from "../Experience";
 import Environment from "./Environment";
 import Office from "./Office";
 import Controls from "./Controls";
+import Floor from "./Floor";
 
 export default class World {
   constructor() {
@@ -17,6 +18,7 @@ export default class World {
     this.resources.on("ready", () => {
       this.environment = new Environment()
       this.office = new Office()
+      this.floor = new Floor()
       this.controls = new Controls()
     })
 
