@@ -326,3 +326,11 @@ svg {
 .green-background {
   background-color: var(--primary-green);
 }
+
+/* media Queries */
+
+@media (max-width: 968px) {
+  .section{
+    width:50%
+  }
+}
