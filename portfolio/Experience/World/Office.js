@@ -1,6 +1,8 @@
 import * as THREE from "three";
 import Experience from "../Experience";
 import GSAP from "gsap";
+import { RectAreaLight } from "three";
+import { RectAreaLightHelper } from "three/examples/jsm/helpers/RectAreaLightHelper"
 
 export default class Office {
   constructor() {
@@ -50,6 +52,21 @@ export default class Office {
       }
 
     })
+
+    const width = 1
+    const height = 1
+    const intensity = 1
+    const rectLight = new THREE.RectAreaLight(
+      0xffffff,
+      intensity,
+      width,
+      height
+    )
+    rectLight.position.set(6.58127, 7, -3.3767)
+    this.actualOffice.add(rectLight)
+
+    const rectLightHelper = new RectAreaLightHelper(rectLight)
+    rectLight.add(rectLightHelper)
 
     this.scene.add(this.actualOffice)
     this.actualOffice.scale.set(0.11, 0.11, 0.11)
