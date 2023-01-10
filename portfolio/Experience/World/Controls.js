@@ -68,6 +68,9 @@ export default class Controls {
         this.lerp.target,
         this.lerp.ease
     )
+    this.lerp.target += 0.0001
+    this.lerp.target = GSAP.utils.clamp(0, 1, this.lerp.target)
+    this.lerp.current = GSAP.utils.clamp(0, 1, this.lerp.current)
     this.curve.getPointAt(this.lerp.current, this.position);
     this.camera.orthographicCamera.position.copy(this.position);
   }
