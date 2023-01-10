@@ -9,7 +9,7 @@ export default class Environment {
     this.scene = this.experience.scene
     this.resources = this.experience.resources
 
-    // this.gui = new GUI({ container: document.querySelector('.hero-main') })
+    this.gui = new GUI({ container: document.querySelector('.hero-main') })
     this.obj = {
         colorObj: {
             r: 0,
@@ -20,7 +20,7 @@ export default class Environment {
     }
 
     this.setSunlight()
-    // this.setGUI()
+    this.setGUI()
   }
 
   setGUI(){
@@ -42,6 +42,7 @@ export default class Environment {
     this.sunlight.shadow.normalBias = 0.05
     this.sunlight.position.set(-1.5, 7, 3)
     this.scene.add(this.sunlight)
+    console.log(this.sunlight)
 
     this.ambientLight = new THREE.AmbientLight("#ffffff", 1)
     this.scene.add(this.ambientLight)
@@ -67,20 +68,20 @@ export default class Environment {
         })
     } else {
         GSAP.to(this.sunlight.color, {
-            r: 255 / 255,
-            g: 255 / 255,
-            b: 255 / 255,
+            r: 1,
+            g: 1,
+            b: 1,
         })
         GSAP.to(this.ambientLight.color, {
-            r: 255 / 255,
-            g: 255 / 255,
-            b: 255 / 255,
+            r: .4,
+            g: .4,
+            b: .4,
         })
         GSAP.to(this.sunlight, {
-            intensity: 4
+            intensity: 3
         })
         GSAP.to(this.ambientLight, {
-            intensity: 4
+            intensity: 3
         })
     }
   }

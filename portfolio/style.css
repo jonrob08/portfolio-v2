@@ -11,16 +11,41 @@ html, body{
 }
 
 :root{
-  --text-black: #333332;
-  --primary-color: #FAF4E5;
-  --primary-pink: #E3E1dE;
-  --primary-blue: #A8B2E2;
-  --secondary-blue: #737DAB;
-  --primary-red: #FFB8A7;
-  --primary-orange: #FFD47D;
-  --primary-yellow: #F9F871;
-  --primary-green: #6FFACC;
-  --secondary-green: #26C196;
+
+  /* Light Theme */
+  --light-text-black: #333332;
+  --light-primary-color: #FAF4E5;
+  --light-primary-pink: #E3E1dE;
+  --light-primary-blue: #A8B2E2;
+  --light-secondary-blue: #737DAB;
+  --light-primary-red: #FFB8A7;
+  --light-primary-yellow: #F9F871;
+  --light-primary-green: #6FFACC;
+  /* Dark Theme */
+  --dark-text-white: #FAF4E5;
+  --dark-primary-color: #737DAB;
+  --dark-primary-yellow: #FFD47D;
+  --dark-secondary-green: #26C196;
+
+
+}
+
+.light-theme {
+  --color-text: var(--light-text-black);
+  --primary-background: var(--light-primary-color);
+  --primary-red: var(--light-primary-red);
+  --primary-blue: var(--light-primary-blue);
+  --primary-green: var(--light-primary-green);
+  --primary-yellow: var(--light-primary-yellow);
+}
+
+.dark-theme {
+  --color-text: var(--dark-text-white);
+  --primary-background: var(--dark-primary-color);
+  --primary-red: var(--light-primary-pink);
+  --primary-blue: var(--light-primary-blue);
+  --primary-green: var(--dark-secondary-green);
+  --primary-yellow: var(--dark-primary-yellow);
 }
 
 /* -------------------- Experience  -------------------- */
@@ -90,7 +115,7 @@ html, body{
   border-radius: 50%;
   width: 20px;
   height: 20px;
-  background-color: var(--primary-color);
+  background-color: var(--primary-background);
   transition: all 0.2s ease-in-out;
 }
 
@@ -112,7 +137,7 @@ html, body{
   width: 50%;
   padding: 1000px 4%;
   margin: 0;
-  background-color: var(--primary-color)
+  background-color: var(--primary-background)
 }
 
 .left{

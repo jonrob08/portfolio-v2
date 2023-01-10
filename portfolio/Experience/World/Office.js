@@ -63,10 +63,12 @@ export default class Office {
       height
     )
     rectLight.position.set(6.58127, 7, -3.3767)
+    rectLight.rotation.x = -Math.PI / 2
+    rectLight.rotation.z = -Math.PI / 4
     this.actualOffice.add(rectLight)
 
     const rectLightHelper = new RectAreaLightHelper(rectLight)
-    rectLight.add(rectLightHelper)
+    // rectLight.add(rectLightHelper)
 
     this.scene.add(this.actualOffice)
     this.actualOffice.scale.set(0.11, 0.11, 0.11)
