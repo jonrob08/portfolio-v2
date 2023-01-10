@@ -98,6 +98,10 @@ html, body{
   transform: scale(0.82);
 }
 
+.slide {
+  left: 28px;
+}
+
 /* -------------------- Section Formatting -------------------- */
 .section-margin{
   height: 3000px;
