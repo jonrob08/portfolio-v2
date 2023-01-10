@@ -9,6 +9,9 @@ export default class Controls {
     this.time = this.experience.time;
     this.camera = this.experience.camera
 
+    this.progress = 0
+    this.testVector = new THREE.Vector3(0,0,0)
+
     this.setPath();
   }
 
@@ -16,18 +19,11 @@ export default class Controls {
     this.curve = new THREE.CatmullRomCurve3(
       [
         new THREE.Vector3(-10, 0, 10),
-        new THREE.Vector3(-5, 0, 5),
+        new THREE.Vector3(-5, 5, 5),
         new THREE.Vector3(0, 0, 0),
         new THREE.Vector3(5, -5, 5),
         new THREE.Vector3(10, 0, 10),
-      ],
-      true
-    );
-
-    this.testVector = new THREE.Vector3(0,0,0)
-    this.curve.getPointAt(1, this.testVector)
-    console.log(this.testVector)
-    this.camera.orthographicCamera.position.copy(this.testVector)
+      ],);
 
     const points = this.curve.getPoints(50);
     const geometry = new THREE.BufferGeometry().setFromPoints(points);
@@ -40,5 +36,9 @@ export default class Controls {
 
   resize() {}
 
-  update() {}
+  update() {
+    this.curve.getPointAt(this.progress, this.testVector)
+    this.progress += 0.001
+    this.camera.orthographicCamera.position.copy(this.testVector)
+  }
 }
