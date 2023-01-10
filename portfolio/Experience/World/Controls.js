@@ -7,12 +7,13 @@ export default class Controls {
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
     this.time = this.experience.time;
-    this.camera = this.experience.camera
+    this.camera = this.experience.camera;
 
-    this.progress = 0
-    this.testVector = new THREE.Vector3(0,0,0)
+    this.progress = 0;
+    this.testVector = new THREE.Vector3(0, 0, 0);
 
     this.setPath();
+    this.onWheel();
   }
 
   setPath() {
@@ -23,7 +24,9 @@ export default class Controls {
         new THREE.Vector3(0, 0, 0),
         new THREE.Vector3(5, -5, 5),
         new THREE.Vector3(10, 0, 10),
-      ],);
+      ],
+      true
+    );
 
     const points = this.curve.getPoints(50);
     const geometry = new THREE.BufferGeometry().setFromPoints(points);
@@ -34,11 +37,28 @@ export default class Controls {
     this.scene.add(curveObject);
   }
 
+  onWheel() {
+    window.addEventListener("wheel", (e) => {
+      console.log(e);
+      if (e.deltaY > 0) {
+        this.progress += 0.1;
+      } else {
+        this.progress -= 0.1;
+        if (this.progress < 0) {
+          this.progress = 1;
+        }
+      }
+    });
+  }
+
   resize() {}
 
   update() {
-    this.curve.getPointAt(this.progress, this.testVector)
-    this.progress += 0.001
-    this.camera.orthographicCamera.position.copy(this.testVector)
+    this.curve.getPointAt(this.progress % 1, this.testVector);
+    // this.progress -= 0.01
+    // if(this.progress < 0){
+    //     this.progress = 1
+    // }
+    this.camera.orthographicCamera.position.copy(this.testVector);
   }
 }
