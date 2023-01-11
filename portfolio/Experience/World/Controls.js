@@ -14,25 +14,24 @@ export default class Controls {
     this.office = this.experience.world.office.actualOffice
     GSAP.registerPlugin(ScrollTrigger)
 
-    this.setPath()
+    this.setScrollTrigger()
   }
 
-  setPath(){
-    console.log(this.office)
-    this.timeline = new GSAP.timeline()
-    this.timeline.to(this.office.position, {
-        x: () => {
-            return this.sizes.width * 0.0012
-        },
-        scrollTrigger: {
-            trigger: ".first-move",
-            markers: true,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 0.6,
-            invalidateOnRefresh: true,
+  setScrollTrigger(){
+    ScrollTrigger.matchMedia({
+        // Desktop timeline
+        "(min-width: 969px)": function() {
+            console.log("desktop view")
+        },  
+        // Mobile timeline
+        "(min-width: 968px)": function() {
+            console.log("mobile view")
+        },  
+        "all": function() {
+    
         }
-    })
+          
+      }); 
   }
 
   resize() {}
