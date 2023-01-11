@@ -36,18 +36,25 @@ export default class Office {
         })
       }
 
-      if (child.name === "tanky"){
-        child.material = new THREE.MeshPhysicalMaterial()
-        child.material.roughness = 0
-        child.material.color.set(0x549dd2)
-        child.material.ior = 3
-        child.material.transmission = 1
-        child.material.opacity = 1
+
+      if (child.name === "aquarium"){
+        child.children[4].material = new THREE.MeshPhysicalMaterial()
+        child.children[4].material.roughness = 0
+        child.children[4].material.color.set(0x549dd2)
+        child.children[4].material.ior = 3
+        child.children[4].material.transmission = 1
+        child.children[4].material.opacity = 1
       }
 
-      if (child.name === "Screen"){
-        child.material = new THREE.MeshBasicMaterial({
+      if (child.name === "Computer"){
+        child.children[1].material = new THREE.MeshBasicMaterial({
           map: this.resources.items.screen
+        })
+      }
+
+      if (child.name === "ShelfItems"){
+        child.children[11].material = new THREE.MeshBasicMaterial({
+          map: this.resources.items.pfp
         })
       }
 
