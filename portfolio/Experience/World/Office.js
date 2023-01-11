@@ -60,8 +60,8 @@ export default class Office {
 
     })
 
-    const width = 1
-    const height = 1
+    const width = 0.8
+    const height = 0.4
     const intensity = 1
     const rectLight = new THREE.RectAreaLight(
       0xffffff,
@@ -74,7 +74,7 @@ export default class Office {
     rectLight.rotation.z = -Math.PI / 4
     this.actualOffice.add(rectLight)
 
-    const rectLightHelper = new RectAreaLightHelper(rectLight)
+    // const rectLightHelper = new RectAreaLightHelper(rectLight)
     // rectLight.add(rectLightHelper)
 
     this.scene.add(this.actualOffice)
