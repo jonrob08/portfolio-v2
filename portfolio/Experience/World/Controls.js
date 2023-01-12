@@ -28,6 +28,11 @@ export default class Controls {
       // Desktop timeline
       "(min-width: 969px)": () => {
         console.log("desktop view");
+        // Resets
+        this.office.scale.set(0.11, 0.11, 0.11);
+        this.rectLight.width = 0.5;
+        this.rectLight.height = 0.7;
+
         // First Section (About Me)
         this.firstMoveTimeline = new GSAP.timeline({
           scrollTrigger: {
@@ -99,15 +104,16 @@ export default class Controls {
           x: -4.1,
         });
       },
-      
+
       // Mobile timeline
       "(max-width: 968px)": () => {
         console.log("mobile view");
 
         // Resets
-        this.office.scale.set(0.07, 0.07, 0.07)
-        this.rectLight.width = 0.3
-        this.rectLight.height = 0.3
+        this.office.scale.set(0.07, 0.07, 0.07);
+        this.office.position.set(0, 0, 0);
+        this.rectLight.width = 0.3;
+        this.rectLight.height = 0.3;
 
         // First Section (About Me)
         this.firstMoveTimeline = new GSAP.timeline({
@@ -119,10 +125,10 @@ export default class Controls {
             invalidateOnRefresh: true,
           },
         }).to(this.office.scale, {
-            x: 0.1,
-            y: 0.1,
-            z: 0.1,
-        })
+          x: 0.1,
+          y: 0.1,
+          z: 0.1,
+        });
 
         // Second Section (Projects)
         this.secondMoveTimeline = new GSAP.timeline({
@@ -133,16 +139,31 @@ export default class Controls {
             scrub: 0.6,
             invalidateOnRefresh: true,
           },
-        }).to(this.office.scale, {
-            x: 0.25,
-            y: 0.25,
-            z: 0.25,
-        }, "same").to(this.rectLight, {
-            width: 0.3 * 3.4,
-            height: 0.4 * 3.4,
-        }, "same").to(this.office.position, {
-            x: 1.5,
-        }, "same")
+        })
+          .to(
+            this.office.scale,
+            {
+              x: 0.25,
+              y: 0.25,
+              z: 0.25,
+            },
+            "beep"
+          )
+          .to(
+            this.rectLight,
+            {
+              width: 0.3 * 3.4,
+              height: 0.4 * 3.4,
+            },
+            "beep"
+          )
+          .to(
+            this.office.position,
+            {
+              x: 1.5,
+            },
+            "beep"
+          );
 
         // Third Section (Contact Me)
         this.thirdMoveTimeline = new GSAP.timeline({
@@ -153,13 +174,39 @@ export default class Controls {
             scrub: 0.6,
             invalidateOnRefresh: true,
           },
-        });
+        })
+        // .to(this.office.position, {
+        //     z: -4.8,
+        //     // x: 2.2
+        //     x: 2.2
+        // })
         this.thirdMoveTimeline.to(this.camera.orthographicCamera.position, {
-            y: 1.5,
-            x: -1.1,
-          });
+          y: 1.5,
+          x: -1.1,
+        });
       },
-      all: () => {},
+      all: () => {
+        // Porch animations
+        console.log(this.office.children)
+        this.thirdMoveTimeline = new GSAP.timeline({
+            scrollTrigger: {
+              trigger: ".third-move",
+              start: "center center",
+              end: "bottom bottom",
+              scrub: 0.6,
+              invalidateOnRefresh: true,
+            },
+          })
+        this.office.children.forEach(child => {
+            if (child.name === "porch"){
+                GSAP.to(child.position, {
+                    x: 0,
+                    z: 0,
+                    duration: 0.3
+                })
+            }
+        })
+      },
     });
   }
 

@@ -58,6 +58,15 @@ export default class Office {
         })
       }
 
+      if (child.name === "porch"){
+        child.position.x = 5.4223 
+        child.position.z = -5.4223 
+      }
+
+      if (child.name === "Mailbox"){
+        
+      }
+
     })
 
     const width = 0.8
