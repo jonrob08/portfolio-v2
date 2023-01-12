@@ -174,7 +174,7 @@ export default class Controls {
             scrub: 0.6,
             invalidateOnRefresh: true,
           },
-        })
+        });
         // .to(this.office.position, {
         //     z: -4.8,
         //     // x: 2.2
@@ -187,25 +187,37 @@ export default class Controls {
       },
       all: () => {
         // Porch animations
-        console.log(this.office.children)
+        console.log(this.office.children);
         this.thirdMoveTimeline = new GSAP.timeline({
-            scrollTrigger: {
-              trigger: ".third-move",
-              start: "center center",
-              end: "bottom bottom",
-              scrub: 0.6,
-              invalidateOnRefresh: true,
-            },
-          })
-        this.office.children.forEach(child => {
-            if (child.name === "porch"){
-                GSAP.to(child.position, {
-                    x: 0,
-                    z: 0,
-                    duration: 0.3
-                })
-            }
-        })
+          scrollTrigger: {
+            trigger: ".third-move",
+            start: "center center",
+            end: "bottom bottom",
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        });
+        // Porch
+        this.office.children.forEach((child) => {
+          if (child.name === "porch") {
+            GSAP.to(child.position, {
+              x: 0,
+              z: 0,
+              duration: 0.3,
+            });
+          }
+        });
+        // Mailbox
+        this.office.children.forEach((child) => {
+          if (child.name === "Mailbox") {
+            GSAP.to(child.scale, {
+              x: 1,
+              y: 1,
+              z: 1,
+              duration: 0.3,
+            });
+          }
+        });
       },
     });
   }

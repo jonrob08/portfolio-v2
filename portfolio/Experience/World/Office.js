@@ -64,7 +64,7 @@ export default class Office {
       }
 
       if (child.name === "Mailbox"){
-        
+        child.scale.set(0,0,0)
       }
 
     })
