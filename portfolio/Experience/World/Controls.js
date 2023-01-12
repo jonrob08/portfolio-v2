@@ -190,6 +190,64 @@ export default class Controls {
         // "same");
     },
       all: () => {
+        // Section's progress bar
+        this.sections = document.querySelectorAll(".section");
+        this.sections.forEach((section) => {
+            this.progressWrapper =
+                section.querySelector(".progress-wrapper");
+            this.progressBar = section.querySelector(".progress-bar");
+
+            if (section.classList.contains("right")) {
+                GSAP.to(section, {
+                    borderTopLeftRadius: 10,
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top bottom",
+                        end: "top top",
+                        scrub: 0.6,
+                    },
+                });
+                GSAP.to(section, {
+                    borderBottomLeftRadius: 700,
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "bottom bottom",
+                        end: "bottom top",
+                        scrub: 0.6,
+                    },
+                });
+            } else {
+                GSAP.to(section, {
+                    borderTopRightRadius: 10,
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top bottom",
+                        end: "top top",
+                        scrub: 0.6,
+                    },
+                });
+                GSAP.to(section, {
+                    borderBottomRightRadius: 700,
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "bottom bottom",
+                        end: "bottom top",
+                        scrub: 0.6,
+                    },
+                });
+            }
+            GSAP.from(this.progressBar, {
+                scaleY: 0,
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 0.4,
+                    pin: this.progressWrapper,
+                    pinSpacing: false,
+                },
+            });
+        });
         // Porch animations
         console.log(this.office.children);
         this.outsideTimeline = new GSAP.timeline({
@@ -309,12 +367,12 @@ export default class Controls {
         this.outsideTimeline.add(this.first)
         this.outsideTimeline.add(this.second)
         this.outsideTimeline.add(this.third)
-        this.outsideTimeline.add(this.fourth)
-        this.outsideTimeline.add(this.fifth)
-        this.outsideTimeline.add(this.sixth)
-        this.outsideTimeline.add(this.seventh)
+        this.outsideTimeline.add(this.fourth, "-=0.2")
+        this.outsideTimeline.add(this.fifth, "-=0.2")
+        this.outsideTimeline.add(this.sixth, "-=0.2")
+        this.outsideTimeline.add(this.seventh, "-=0.2")
         this.outsideTimeline.add(this.ninth)
-        this.outsideTimeline.add(this.eigth)
+        this.outsideTimeline.add(this.eigth, "-=0.1")
       },
     });
   }
