@@ -214,7 +214,84 @@ export default class Controls {
               x: 1,
               y: 1,
               z: 1,
-              duration: 0.3,
+              duration: 3,
+            });
+          }
+        });
+        // Mailbox
+        this.office.children.forEach((child) => {
+          if (child.name === "flower_1") {
+            GSAP.to(child.scale, {
+              x: .1,
+              y: .1,
+              z: .1,
+              duration: 3,
+            });
+          }
+        });
+        // Mailbox
+        this.office.children.forEach((child) => {
+          if (child.name === "flower_2") {
+            GSAP.to(child.scale, {
+              x: .13,
+              y: .13,
+              z: .13,
+              duration: 3,
+            });
+          }
+        });
+        // Mailbox
+        this.office.children.forEach((child) => {
+          if (child.name === "lamp_outside") {
+            GSAP.to(child.scale, {
+              x: 1,
+              y: 1,
+              z: 1,
+              duration: 3,
+            });
+          }
+        });
+        // Mailbox
+        this.office.children.forEach((child) => {
+          if (child.name === "step_stone_1") {
+            GSAP.to(child.scale, {
+              x: 1,
+              y: 1,
+              z: 1,
+              duration: 3,
+            });
+          }
+        });
+        // Mailbox
+        this.office.children.forEach((child) => {
+          if (child.name === "step_stone_2") {
+            GSAP.to(child.scale, {
+              x: 1,
+              y: 1,
+              z: 1,
+              duration: 3,
+            });
+          }
+        });
+        // Mailbox
+        this.office.children.forEach((child) => {
+          if (child.name === "step_stone_3") {
+            GSAP.to(child.scale, {
+              x: 1,
+              y: 1,
+              z: 1,
+              duration: 3,
+            });
+          }
+        });
+        // Mailbox
+        this.office.children.forEach((child) => {
+          if (child.name === "dirt") {
+            GSAP.to(child.scale, {
+              x: 1,
+              y: 1,
+              z: 1,
+              duration: 3,
             });
           }
         });
