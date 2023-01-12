@@ -3,6 +3,7 @@ import Experience from "../Experience";
 import GSAP from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { RectAreaLight } from "three";
+import ASScroll from "@ashthornton/asscroll";
 
 export default class Controls {
   constructor() {
@@ -20,7 +21,12 @@ export default class Controls {
     });
     GSAP.registerPlugin(ScrollTrigger);
 
+    this.setSmoothScroll();
     this.setScrollTrigger();
+  }
+
+  setSmoothScroll(){
+    
   }
 
   setScrollTrigger() {
