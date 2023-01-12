@@ -86,22 +86,78 @@ export default class Controls {
 
         // Third Section (Contact Me)
         this.thirdMoveTimeline = new GSAP.timeline({
-            scrollTrigger: {
-                trigger: ".third-move",
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 0.6,
-                invalidateOnRefresh: true,
-            }
-        })
-        this.thirdMoveTimeline.to(this.camera.orthographicCamera.position,{
-            y: 1.5,
-            x: -4.1
-        })
+          scrollTrigger: {
+            trigger: ".third-move",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        });
+        this.thirdMoveTimeline.to(this.camera.orthographicCamera.position, {
+          y: 1.5,
+          x: -4.1,
+        });
       },
+      
       // Mobile timeline
-      "(min-width: 968px)": () => {
+      "(max-width: 968px)": () => {
         console.log("mobile view");
+
+        // Resets
+        this.office.scale.set(0.07, 0.07, 0.07)
+        this.rectLight.width = 0.3
+        this.rectLight.height = 0.3
+
+        // First Section (About Me)
+        this.firstMoveTimeline = new GSAP.timeline({
+          scrollTrigger: {
+            trigger: ".first-move",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        }).to(this.office.scale, {
+            x: 0.1,
+            y: 0.1,
+            z: 0.1,
+        })
+
+        // Second Section (Projects)
+        this.secondMoveTimeline = new GSAP.timeline({
+          scrollTrigger: {
+            trigger: ".second-move",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        }).to(this.office.scale, {
+            x: 0.25,
+            y: 0.25,
+            z: 0.25,
+        }, "same").to(this.rectLight, {
+            width: 0.3 * 3.4,
+            height: 0.4 * 3.4,
+        }, "same").to(this.office.position, {
+            x: 1.5,
+        }, "same")
+
+        // Third Section (Contact Me)
+        this.thirdMoveTimeline = new GSAP.timeline({
+          scrollTrigger: {
+            trigger: ".third-move",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        });
+        this.thirdMoveTimeline.to(this.camera.orthographicCamera.position, {
+            y: 1.5,
+            x: -1.1,
+          });
       },
       all: () => {},
     });
