@@ -18,8 +18,8 @@ export default class World {
 
     this.resources.on("ready", () => {
       this.environment = new Environment()
-      this.office = new Office()
       this.floor = new Floor()
+      this.office = new Office()
       this.controls = new Controls()
     })
 

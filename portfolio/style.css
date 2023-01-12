@@ -163,10 +163,10 @@ svg {
   border-bottom-left-radius: 0px 0px;
 }
 
-/* -------------------- Section Formatting -------------------- */
+/* -------------------- Progress bar -------------------- */
 .progress-wrapper{
   height: 0;
-  width: 12px;
+  width: 25px;
   z-index: 9999;
 }
 
