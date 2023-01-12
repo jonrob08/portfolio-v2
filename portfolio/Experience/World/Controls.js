@@ -107,102 +107,104 @@ export default class Controls {
 
       // Mobile timeline
       "(max-width: 968px)": () => {
-        console.log("mobile view");
+        // console.log("fired mobile");
 
         // Resets
         this.office.scale.set(0.07, 0.07, 0.07);
         this.office.position.set(0, 0, 0);
         this.rectLight.width = 0.3;
-        this.rectLight.height = 0.3;
+        this.rectLight.height = 0.4;
+        this.camera.orthographicCamera.position.set(0, 6.5, 10);
 
         // First Section (About Me)
         this.firstMoveTimeline = new GSAP.timeline({
-          scrollTrigger: {
-            trigger: ".first-move",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 0.6,
-            invalidateOnRefresh: true,
-          },
+            scrollTrigger: {
+                trigger: ".first-move",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.6,
+                // invalidateOnRefresh: true,
+            },
         }).to(this.office.scale, {
-          x: 0.1,
-          y: 0.1,
-          z: 0.1,
-        });
+            x: 0.1,
+            y: 0.1,
+            z: 0.1,
+        },
+        "same");
 
         // Second Section (Projects)
         this.secondMoveTimeline = new GSAP.timeline({
-          scrollTrigger: {
-            trigger: ".second-move",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 0.6,
-            invalidateOnRefresh: true,
-          },
+            scrollTrigger: {
+                trigger: ".second-move",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.6,
+                invalidateOnRefresh: true,
+            },
         })
-          .to(
-            this.office.scale,
-            {
-              x: 0.25,
-              y: 0.25,
-              z: 0.25,
-            },
-            "beep"
-          )
-          .to(
-            this.rectLight,
-            {
-              width: 0.3 * 3.4,
-              height: 0.4 * 3.4,
-            },
-            "beep"
-          )
-          .to(
-            this.office.position,
-            {
-              x: 1.5,
-            },
-            "beep"
-          );
+            .to(
+                this.office.scale,
+                {
+                    x: 0.25,
+                    y: 0.25,
+                    z: 0.25,
+                },
+                "same"
+            )
+            .to(
+                this.rectLight,
+                {
+                    width: 0.3 * 3.4,
+                    height: 0.4 * 3.4,
+                },
+                "same"
+            )
+            .to(
+                this.office.position,
+                {
+                    x: 1.5,
+                },
+                "same"
+            );
 
-        // Third Section (Contact Me)
+        // Third section (Contact Me)
         this.thirdMoveTimeline = new GSAP.timeline({
-          scrollTrigger: {
-            trigger: ".third-move",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 0.6,
-            invalidateOnRefresh: true,
-          },
-        });
+            scrollTrigger: {
+                trigger: ".third-move",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.6,
+                invalidateOnRefresh: true,
+            },
+        })
+        .to(this.office.scale, {
+                x: 0.1,
+                y: 0.1,
+                z: 0.1,
+        },
+        "same")
         // .to(this.office.position, {
-        //     z: -4.8,
-        //     // x: 2.2
-        //     x: 2.2
-        // })
-        this.thirdMoveTimeline.to(this.camera.orthographicCamera.position, {
-          y: 1.5,
-          x: -1.1,
-        });
-      },
+        //     z: -2.5,
+        //     x: 1.9
+        // },
+        // "same");
+    },
       all: () => {
         // Porch animations
         console.log(this.office.children);
-        this.thirdMoveTimeline = new GSAP.timeline({
+        this.outsideTimeline = new GSAP.timeline({
           scrollTrigger: {
             trigger: ".third-move",
             start: "center center",
-            end: "bottom bottom",
-            scrub: 0.6,
-            invalidateOnRefresh: true,
           },
         });
         // Porch
         this.office.children.forEach((child) => {
           if (child.name === "porch") {
-            GSAP.to(child.position, {
+            this.first = GSAP.to(child.position, {
               x: 0,
               z: 0,
+              ease: "back.out(2)",
               duration: 0.3,
             });
           }
@@ -210,91 +212,109 @@ export default class Controls {
         // Mailbox
         this.office.children.forEach((child) => {
           if (child.name === "Mailbox") {
-            GSAP.to(child.scale, {
+            this.second = GSAP.to(child.scale, {
               x: 1,
               y: 1,
               z: 1,
-              duration: 3,
+              ease: "back.out(2)",
+              duration: 0.3,
             });
           }
         });
-        // Mailbox
+        // Flower 1
         this.office.children.forEach((child) => {
           if (child.name === "flower_1") {
-            GSAP.to(child.scale, {
-              x: .1,
-              y: .1,
-              z: .1,
-              duration: 3,
+            this.eigth = GSAP.to(child.scale, {
+              x: 0.1,
+              y: 0.1,
+              z: 0.1,
+              ease: "back.out(2)",
+              duration: 0.3,
             });
           }
         });
-        // Mailbox
+        // Flower 2
         this.office.children.forEach((child) => {
           if (child.name === "flower_2") {
-            GSAP.to(child.scale, {
-              x: .13,
-              y: .13,
-              z: .13,
-              duration: 3,
+            this.ninth = GSAP.to(child.scale, {
+              x: 0.13,
+              y: 0.13,
+              z: 0.13,
+              ease: "back.out(2)",
+              duration: 0.3,
             });
           }
         });
-        // Mailbox
+        // Lamp
         this.office.children.forEach((child) => {
           if (child.name === "lamp_outside") {
-            GSAP.to(child.scale, {
+            this.third = GSAP.to(child.scale, {
               x: 1,
               y: 1,
               z: 1,
-              duration: 3,
+              ease: "back.out(2)",
+              duration: 0.3,
             });
           }
         });
-        // Mailbox
+        // Stone 1
         this.office.children.forEach((child) => {
           if (child.name === "step_stone_1") {
-            GSAP.to(child.scale, {
+            this.fourth = GSAP.to(child.scale, {
               x: 1,
               y: 1,
               z: 1,
-              duration: 3,
+              ease: "back.out(2)",
+              duration: 0.3,
             });
           }
         });
-        // Mailbox
+        // Stone 2
         this.office.children.forEach((child) => {
           if (child.name === "step_stone_2") {
-            GSAP.to(child.scale, {
+            this.fifth = GSAP.to(child.scale, {
               x: 1,
               y: 1,
               z: 1,
-              duration: 3,
+              ease: "back.out(2)",
+              duration: 0.3,
             });
           }
         });
-        // Mailbox
+        // Stone 3
         this.office.children.forEach((child) => {
           if (child.name === "step_stone_3") {
-            GSAP.to(child.scale, {
+            this.sixth = GSAP.to(child.scale, {
               x: 1,
               y: 1,
               z: 1,
-              duration: 3,
+              ease: "back.out(2)",
+              duration: 0.3,
             });
           }
         });
-        // Mailbox
+        // Dirt
         this.office.children.forEach((child) => {
           if (child.name === "dirt") {
-            GSAP.to(child.scale, {
+            this.seventh = GSAP.to(child.scale, {
               x: 1,
               y: 1,
               z: 1,
-              duration: 3,
+              ease: "back.out(2)",
+              duration: 0.3,
             });
           }
         });
+
+        this.outsideTimeline.add(this.first)
+        this.outsideTimeline.add(this.second)
+        this.outsideTimeline.add(this.third)
+        this.outsideTimeline.add(this.fourth)
+        this.outsideTimeline.add(this.fifth)
+        this.outsideTimeline.add(this.sixth)
+        this.outsideTimeline.add(this.seventh)
+        this.outsideTimeline.add(this.ninth)
+        this.outsideTimeline.add(this.eigth)
       },
     });
   }
