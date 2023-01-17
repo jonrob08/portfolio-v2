@@ -12,6 +12,7 @@ export default class Office {
     this.time = this.experience.time;
     this.office = this.resources.items.office;
     this.actualOffice = this.office.scene;
+    this.officeChildren = {};
 
     this.lerp = {
       current: 0,
@@ -77,7 +78,7 @@ export default class Office {
       // console.log(child)
       child.scale.set(0, 0, 0);
       if (child.name === "Cube") {
-        child.scale.set(1, 1, 1);
+        // child.scale.set(1, 1, 1);
         child.position.set(0, -1, 0)
         child.rotation.y = Math.PI / 4
       }
@@ -91,12 +92,10 @@ export default class Office {
         child.children[6].scale.set(0, 0, 0);
         child.children[7].scale.set(0, 0, 0);
         child.children[8].scale.set(0, 0, 0);
-      } else {
-        console.log("nope");
       }
-      // if(child.name==="Computer"){
-      //   child.scale.set(5,5,5)
-      // }
+
+      this.officeChildren[child.name.toLowerCase()] = child
+
     });
 
     const width = 0.8;
@@ -112,6 +111,8 @@ export default class Office {
     rectLight.rotation.x = -Math.PI / 2;
     rectLight.rotation.z = -Math.PI / 4;
     this.actualOffice.add(rectLight);
+
+    this.officeChildren['rectLight'] = rectLight
 
     // const rectLightHelper = new RectAreaLightHelper(rectLight)
     // rectLight.add(rectLightHelper)
