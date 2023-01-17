@@ -11,8 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
-public/models
-public/textures
+# public/models
+# public/textures
 
 # Editor directories and files
 .vscode/*
