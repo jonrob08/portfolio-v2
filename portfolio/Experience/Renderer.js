@@ -24,7 +24,7 @@ export default class Renderer {
     this.renderer.outputEncoding = THREE.sRGBEncoding;
     this.renderer.toneMapping = THREE.CineonToneMapping;
     // play around with this setting more
-    this.renderer.toneMappingExposure = 1.65;
+    this.renderer.toneMappingExposure = 1.5;
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 

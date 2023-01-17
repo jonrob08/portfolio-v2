@@ -58,6 +58,11 @@ export default class Resources extends EventEmitter{
                 this.videoTexture[asset.name].encoding = THREE.sRGBEncoding
 
                 this.singleAssetLoaded(asset, this.videoTexture[asset.name])
+            } else if (asset.type === "texture") {
+                const textureLoader = new THREE.TextureLoader();
+                textureLoader.load(asset.path, (texture) => {
+                    this.singleAssetLoaded(asset, texture);
+                });
             }
         }
     }
