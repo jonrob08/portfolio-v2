@@ -1,7 +1,7 @@
 import { EventEmitter } from "events";
 import Experience from "./Experience";
 import GSAP from "gsap";
-import convert from "./Utils/divToSpan"
+import convert from "./Utils/divToSpan";
 
 export default class Preloader extends EventEmitter {
   constructor() {
@@ -16,406 +16,424 @@ export default class Preloader extends EventEmitter {
 
     this.device = this.sizes.device;
 
-        this.sizes.on("switchdevice", (device) => {
-            this.device = device;
-        });
+    this.sizes.on("switchdevice", (device) => {
+      this.device = device;
+    });
 
     this.world.on("worldready", () => {
-      this.setAssets()
+      this.setAssets();
       this.playIntro();
     });
   }
 
-  setAssets(){
+  setAssets() {
     convert(document.querySelector(".intro-text"));
     convert(document.querySelector(".hero-main-title"));
     convert(document.querySelector(".hero-main-description"));
     convert(document.querySelector(".hero-secondary-subtitle"));
-    convert(document.querySelector(".hero-secondary-subdescription"));
-    
-    this.office = this.experience.world.office.actualOffice
-    this.officeChildren = this.experience.world.office.officeChildren
-    console.log(this.officeChildren)
+    convert(document.querySelector(".second-sub"));
+
+    this.office = this.experience.world.office.actualOffice;
+    this.officeChildren = this.experience.world.office.officeChildren;
+    // console.log(this.officeChildren);
   }
 
   firstIntro() {
     return new Promise((resolve) => {
-        this.timeline = new GSAP.timeline();
-        this.timeline.set(".animatedis", { y: 0, yPercent: 100 });
-        this.timeline.to(".preloader", {
-            opacity: 0,
-            delay: 1,
-            onComplete: () => {
-                document
-                    .querySelector(".preloader")
-                    .classList.add("hidden");
-            },
-        });
-        if (this.device === "desktop") {
-            this.timeline
-                .to(this.officeChildren.cube.scale, {
-                    x: 1.4,
-                    y: 1.4,
-                    z: 1.4,
-                    ease: "back.out(2.5)",
-                    duration: 0.7,
-                })
-                .to(this.office.position, {
-                    x: -1,
-                    ease: "power1.out",
-                    duration: 0.7,
-                });
-        } else {
-            this.timeline
-                .to(this.officeChildren.cube.scale, {
-                    x: 1.4,
-                    y: 1.4,
-                    z: 1.4,
-                    ease: "back.out(2.5)",
-                    duration: 0.7,
-                })
-                .to(this.office.position, {
-                    z: -1,
-                    ease: "power1.out",
-                    duration: 0.7,
-                });
-        }
+      this.timeline = new GSAP.timeline();
+      this.timeline.set(".animatedis", { y: 0, yPercent: 100 });
+      this.timeline.to(".preloader", {
+        opacity: 0,
+        delay: 1,
+        onComplete: () => {
+          document.querySelector(".preloader").classList.add("hidden");
+        },
+      });
+      if (this.device === "desktop") {
         this.timeline
-            .to(".intro-text .animatedis", {
-                yPercent: 0,
-                stagger: 0.05,
-                ease: "back.out(1.7)",
-            })
-            .to(
-                ".arrow-svg-wrapper",
-                {
-                    opacity: 1,
-                },
-                "same"
-            )
-            .to(
-                ".toggle-bar",
-                {
-                    opacity: 1,
-                    onComplete: resolve,
-                },
-                "same"
-            );
+          .to(this.officeChildren.cube.scale, {
+            x: 1.4,
+            y: 1.4,
+            z: 1.4,
+            ease: "back.out(2.5)",
+            duration: 0.7,
+          })
+          .to(this.office.position, {
+            x: -1,
+            ease: "power1.out",
+            duration: 0.7,
+          });
+      } else {
+        this.timeline
+          .to(this.officeChildren.cube.scale, {
+            x: 1.4,
+            y: 1.4,
+            z: 1.4,
+            ease: "back.out(2.5)",
+            duration: 0.7,
+          })
+          .to(this.office.position, {
+            z: -1,
+            ease: "power1.out",
+            duration: 0.7,
+          });
+      }
+      this.timeline
+        .to(".intro-text .animatedis", {
+          yPercent: 0,
+          stagger: 0.05,
+          ease: "back.out(1.7)",
+        })
+        .to(
+          ".arrow-svg-wrapper",
+          {
+            opacity: 1,
+          },
+          "same"
+        )
+        .to(
+          ".toggle-bar",
+          {
+            opacity: 1,
+            onComplete: resolve,
+          },
+          "same"
+        );
     });
-}
+  }
 
-secondIntro() {
+  secondIntro() {
     return new Promise((resolve) => {
-        this.secondTimeline = new GSAP.timeline();
+      this.secondTimeline = new GSAP.timeline();
 
-        this.secondTimeline
-            .to(
-                ".intro-text .animatedis",
-                {
-                    yPercent: 100,
-                    stagger: 0.05,
-                    ease: "back.in(1.7)",
-                },
-                "fadeout"
-            )
-            .to(
-                ".arrow-svg-wrapper",
-                {
-                    opacity: 0,
-                },
-                "fadeout"
-            )
-            .to(
-                this.office.position,
-                {
-                    x: 0,
-                    y: 0,
-                    z: 0,
-                    ease: "power1.out",
-                },
-                "same"
-            )
-            .to(
-                this.officeChildren.cube.rotation,
-                {
-                    y: 2 * Math.PI + Math.PI / 4,
-                },
-                "same"
-            )
-            .to(
-                this.officeChildren.cube.scale,
-                {
-                    x: 10,
-                    y: 10,
-                    z: 10,
-                },
-                "same"
-            )
-            .to(
+      this.secondTimeline
+        .to(
+          ".intro-text .animatedis",
+          {
+            yPercent: 100,
+            stagger: 0.05,
+            ease: "back.in(1.7)",
+          },
+          "fadeout"
+        )
+        .to(
+          ".arrow-svg-wrapper",
+          {
+            opacity: 0,
+          },
+          "fadeout"
+        )
+        .to(
+          this.office.position,
+          {
+            x: 0,
+            y: 0,
+            z: 0,
+            ease: "power1.out",
+          },
+          "same"
+        )
+        .to(
+          this.officeChildren.cube.rotation,
+          {
+            y: 2 * Math.PI + Math.PI / 4,
+          },
+          "same"
+        )
+        .to(
+          this.officeChildren.cube.scale,
+          {
+            x: 10,
+            y: 10,
+            z: 10,
+          },
+          "same"
+        )
+        if (this.device === "desktop") {
+            this.secondTimeline.to(
                 this.camera.orthographicCamera.position,
                 {
-                    y: 3.5,
+                  y: 3.5,
                 },
                 "same"
-            )
-            .to(
-                this.officeChildren.cube.position,
+              )
+        } else {
+            this.secondTimeline.to(
+                this.camera.orthographicCamera.position,
                 {
-                    x: 0.638711,
-                    y: 8.5618,
-                    z: 1.3243,
+                  y: 6.5,
                 },
                 "same"
-            )
-            .set(this.officeChildren.body.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-            })
-            .to(
-                this.officeChildren.cube.scale,
-                {
-                    x: 0,
-                    y: 0,
-                    z: 0,
-                    duration: 1,
-                },
-                "introtext"
-            )
-            .to(
-                ".hero-main-title .animatedis",
-                {
-                    yPercent: 0,
-                    stagger: 0.07,
-                    ease: "back.out(1.7)",
-                },
-                "introtext"
-            )
-            .to(
-                ".hero-main-description .animatedis",
-                {
-                    yPercent: 0,
-                    stagger: 0.07,
-                    ease: "back.out(1.7)",
-                },
-                "introtext"
-            )
-            .to(
-                ".first-sub .animatedis",
-                {
-                    yPercent: 0,
-                    stagger: 0.07,
-                    ease: "back.out(1.7)",
-                },
-                "introtext"
-            )
-            .to(
-                ".second-sub .animatedis",
-                {
-                    yPercent: 0,
-                    stagger: 0.07,
-                    ease: "back.out(1.7)",
-                },
-                "introtext"
-            )
-            .to(
-                this.officeChildren.aquarium.children[0].scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                ">-0.5"
-            ).to(
-                this.officeChildren.aquarium.children[1].scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                ">-0.5"
-            ).to(
-                this.officeChildren.aquarium.children[2].scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                ">-0.5"
-            ).to(
-                this.officeChildren.aquarium.children[3].scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                ">-0.5"
-            ).to(
-                this.officeChildren.aquarium.children[4].scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                ">-0.5"
-            ).to(
-                this.officeChildren.aquarium.children[5].scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                ">-0.5"
-            ).to(
-                this.officeChildren.aquarium.children[6].scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                ">-0.5"
-            ).to(
-                this.officeChildren.aquarium.children[7].scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                ">-0.5"
-            ).to(
-                this.officeChildren.aquarium.children[8].scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                ">-0.5"
-            )
-            .to(
-                this.officeChildren.clock.scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                ">-0.4"
-            )
-            .to(
-                this.officeChildren.shelfitems.scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                ">-0.3"
-            )
-            .to(
-                this.officeChildren.floor_items.scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                ">-0.2"
-            )
-            .to(
-                this.officeChildren.desks.scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                ">-0.1"
-            )
-            .to(
-                this.officeChildren.table_stuff.scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                ">-0.1"
-            )
-            .to(this.officeChildren.computer.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-                ease: "back.out(2.2)",
-                duration: 0.5,
-            })
-            .set(this.officeChildren.porch.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-            })
-            .to(
-                this.officeChildren.chair.scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                "chair"
-            )
-            .to(
-                this.officeChildren.fishy.scale,
-                {
-                    x: 1,
-                    y: 1,
-                    z: 1,
-                    ease: "back.out(2.2)",
-                    duration: 0.5,
-                },
-                "chair"
-            )
-            .to(
-                this.officeChildren.chair.rotation,
-                {
-                    y: 4 * Math.PI + Math.PI / 4,
-                    ease: "power2.out",
-                    duration: 1,
-                },
-                "chair"
-            )
-            .to(".arrow-svg-wrapper", {
-                opacity: 1,
-                onComplete: resolve,
-            });
+              )
+        }
+        
+        this.secondTimeline.to(
+          this.officeChildren.cube.position,
+          {
+            x: 0,
+            y: 3.96569,
+            z: 0.070301,
+          },
+          "same"
+        )
+        .set(this.officeChildren.body.scale, {
+          x: 1,
+          y: 1,
+          z: 1,
+        })
+        .to(
+          this.officeChildren.cube.scale,
+          {
+            x: 0,
+            y: 0,
+            z: 0,
+            duration: 1,
+          },
+          "introtext"
+        )
+        .to(
+          ".hero-main-title .animatedis",
+          {
+            yPercent: 0,
+            stagger: 0.07,
+            ease: "back.out(1.7)",
+          },
+          "introtext"
+        )
+        .to(
+          ".hero-main-description .animatedis",
+          {
+            yPercent: 0,
+            stagger: 0.07,
+            ease: "back.out(1.7)",
+          },
+          "introtext"
+        )
+        .to(
+          ".first-sub .animatedis",
+          {
+            yPercent: 0,
+            stagger: 0.07,
+            ease: "back.out(1.7)",
+          },
+          "introtext"
+        )
+        .to(
+          ".second-sub .animatedis",
+          {
+            yPercent: 0,
+            stagger: 0.07,
+            ease: "back.out(1.7)",
+          },
+          "introtext"
+        )
+        .to(
+          this.officeChildren.aquarium.children[0].scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          ">-0.5"
+        )
+        .to(
+          this.officeChildren.aquarium.children[1].scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          ">-0.5"
+        )
+        .to(
+          this.officeChildren.aquarium.children[2].scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          ">-0.5"
+        )
+        .to(
+          this.officeChildren.aquarium.children[3].scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          ">-0.5"
+        )
+        .to(
+          this.officeChildren.aquarium.children[4].scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          ">-0.5"
+        )
+        .to(
+          this.officeChildren.aquarium.children[5].scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          ">-0.5"
+        )
+        .to(
+          this.officeChildren.aquarium.children[6].scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          ">-0.5"
+        )
+        .to(
+          this.officeChildren.aquarium.children[7].scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          ">-0.5"
+        )
+        .to(
+          this.officeChildren.aquarium.children[8].scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          ">-0.5"
+        )
+        .to(
+          this.officeChildren.clock.scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          ">-0.4"
+        )
+        .to(
+          this.officeChildren.shelfitems.scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          ">-0.3"
+        )
+        .to(
+          this.officeChildren.floor_items.scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          ">-0.2"
+        )
+        .to(
+          this.officeChildren.desks.scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          ">-0.1"
+        )
+        .to(
+          this.officeChildren.table_stuff.scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          ">-0.1"
+        )
+        .to(this.officeChildren.computer.scale, {
+          x: 1,
+          y: 1,
+          z: 1,
+          ease: "back.out(2.2)",
+          duration: 0.5,
+        })
+        .set(this.officeChildren.porch.scale, {
+          x: 1,
+          y: 1,
+          z: 1,
+        })
+        .to(
+          this.officeChildren.chair.scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          "chair"
+        )
+        .to(
+          this.officeChildren.fishy.scale,
+          {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: "back.out(2.2)",
+            duration: 0.5,
+          },
+          "chair"
+        )
+        .to(
+          this.officeChildren.chair.rotation,
+          {
+            y: 4 * Math.PI + Math.PI / 4,
+            ease: "power2.out",
+            duration: 1,
+          },
+          "chair"
+        )
+        .to(".arrow-svg-wrapper", {
+          opacity: 1,
+        //   onComplete: resolve,
+        });
     });
-}
+  }
 
 onScroll(e) {
     if (e.deltaY > 0) {
+        // window.removeEventListener("wheel", this.scrollOnceEvent);
         this.removeEventListeners();
         this.playSecondIntro();
     }
@@ -443,9 +461,9 @@ removeEventListeners() {
 }
 
 async playIntro() {
-    this.scaleFlag = true;
+    // this.scaleFlag = true;
     await this.firstIntro();
-    this.moveFlag = true;
+    // this.moveFlag = true;
     this.scrollOnceEvent = this.onScroll.bind(this);
     this.touchStart = this.onTouch.bind(this);
     this.touchMove = this.onTouchMove.bind(this);
@@ -454,9 +472,9 @@ async playIntro() {
     window.addEventListener("touchmove", this.touchMove);
 }
 async playSecondIntro() {
-    this.moveFlag = false;
+    // this.moveFlag = false;
     await this.secondIntro();
-    this.scaleFlag = false;
+    // this.scaleFlag = false;
     this.emit("enablecontrols");
 }
 
@@ -479,4 +497,13 @@ scale() {
     }
 }
 
+update() {
+    if (this.moveFlag) {
+        this.move();
+    }
+
+    if (this.scaleFlag) {
+        this.scale();
+    }
+}
 }

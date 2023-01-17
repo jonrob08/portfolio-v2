@@ -23,6 +23,8 @@ export default class Controls {
 
     GSAP.registerPlugin(ScrollTrigger);
 
+    document.querySelector(".page").style.overflow = "visible";
+
     this.setSmoothScroll();
     this.setScrollTrigger();
   }
@@ -394,9 +396,9 @@ export default class Controls {
         this.office.children.forEach((child) => {
           if (child.name === "flower_1") {
             this.eigth = GSAP.to(child.scale, {
-              x: 0.1,
-              y: 0.1,
-              z: 0.1,
+              x: 1,
+              y: 1,
+              z: 1,
               ease: "back.out(2)",
               duration: 0.3,
             });
@@ -406,9 +408,9 @@ export default class Controls {
         this.office.children.forEach((child) => {
           if (child.name === "flower_2") {
             this.ninth = GSAP.to(child.scale, {
-              x: 0.13,
-              y: 0.13,
-              z: 0.13,
+              x: 1.3,
+              y: 1.3,
+              z: 1.3,
               ease: "back.out(2)",
               duration: 0.3,
             });

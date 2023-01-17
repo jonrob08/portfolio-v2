@@ -10,6 +10,7 @@ import Renderer from "./Renderer"
 import World from "./World/World"
 import Theme from "./Theme"
 import Preloader from "./Preloader"
+import Controls from "./World/Controls"
 
 export default class Experience {
     static instance
@@ -28,9 +29,12 @@ export default class Experience {
         this.theme = new Theme()
         this.world = new World()
         this.preloader = new Preloader()
+        
+        this.preloader.on("enablecontrols", () => {
+            this.controls = new Controls();
+        });
 
-        // .on listens to the created event
-        this.time.on("resize", ()=>{
+        this.sizes.on("resize", ()=>{
             this.resize()
         })
         this.time.on("update", ()=>{
@@ -45,6 +49,10 @@ export default class Experience {
     }
 
     update(){
+        if (this.controls) {
+            this.controls.update();
+        }
+        this.preloader.update();
         this.camera.update()
         this.world.update()
         this.renderer.update()

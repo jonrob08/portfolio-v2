@@ -2,7 +2,7 @@ export default [
     {
         name: "office",
         type: "glbModel",
-        path: "/public/models/officev8.glb"
+        path: "/public/models/officev11.glb"
     },
     {
         name: "screen",
