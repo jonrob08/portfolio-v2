@@ -62,18 +62,41 @@ export default class Office {
         child.position.z = -5.4223;
       }
 
-      if (
-        child.name === "Mailbox" ||
-        child.name === "flower_1" ||
-        child.name === "flower_2" ||
-        child.name === "lamp_outside" ||
-        child.name === "step_stone_1" ||
-        child.name === "step_stone_2" ||
-        child.name === "step_stone_3" ||
-        child.name === "dirt" 
-      ) {
-        child.scale.set(0, 0, 0);
+      // if (
+      //   child.name === "Mailbox" ||
+      //   child.name === "flower_1" ||
+      //   child.name === "flower_2" ||
+      //   child.name === "lamp_outside" ||
+      //   child.name === "step_stone_1" ||
+      //   child.name === "step_stone_2" ||
+      //   child.name === "step_stone_3" ||
+      //   child.name === "dirt"
+      // ) {
+      //   child.scale.set(0, 0, 0);
+      // }
+      // console.log(child)
+      child.scale.set(0, 0, 0);
+      if (child.name === "Cube") {
+        child.scale.set(1, 1, 1);
+        child.position.set(0, -1, 0)
+        child.rotation.y = Math.PI / 4
       }
+      if (child.name === "aquarium") {
+        child.children[0].scale.set(0, 0, 0);
+        child.children[1].scale.set(0, 0, 0);
+        child.children[2].scale.set(0, 0, 0);
+        child.children[3].scale.set(0, 0, 0);
+        child.children[4].scale.set(0, 0, 0);
+        child.children[5].scale.set(0, 0, 0);
+        child.children[6].scale.set(0, 0, 0);
+        child.children[7].scale.set(0, 0, 0);
+        child.children[8].scale.set(0, 0, 0);
+      } else {
+        console.log("nope");
+      }
+      // if(child.name==="Computer"){
+      //   child.scale.set(5,5,5)
+      // }
     });
 
     const width = 0.8;
