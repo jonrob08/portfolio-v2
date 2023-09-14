@@ -494,3 +494,153 @@ svg {
     z-index: 9999;
   }
 }
+
+.skill-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.skill-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.skill-bar {
+  height: 20px;
+  background-color: #0099cc;
+}
+
+.skill-label {
+  margin-right: 16px;
+}
+
+.container {
+  width: 100%;
+  padding: 20px;
+}
+
+.skill-bar {
+  width: 100%;
+  height: 45px;
+  margin-bottom: 20px;
+  background-color: #ccc;
+  border-radius: 30px;
+  position: relative;
+
+}
+
+.skill-label {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  line-height: 40px;
+  z-index: 1;
+}
+
+.skill {
+  position: relative;
+}
+
+.percentage-circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 25px;
+  background-color: #a8d5e2; 
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #85c1e2; 
+}
+
+
+[data-skill="javascript"] {
+  background-color: #F7DF1E;
+}
+
+[data-skill="css"] {
+  background-color: #1572B6;
+}
+
+[data-skill="scss"] {
+  background-color: #C6538C;
+}
+
+[data-skill="tailwind"] {
+  background-color: #38B2AC;
+}
+
+[data-skill="python"] {
+  background-color: #306998;
+}
+
+[data-skill="typescript"] {
+  background-color: #007ACC;
+}
+
+[data-skill="csharp"] {
+  background-color: #9A4993;
+}
+
+[data-skill="php"] {
+  background-color: #8892BF;
+}
+
+[data-skill="nodejs"] {
+  background-color: #8CC84B;
+}
+
+[data-skill="react-next"] {
+  background-color: #61DAFB;
+}
+
+[data-skill="vue-nuxt"] {
+  background-color: #4FC08D;
+}
+
+[data-skill="angular"] {
+  background-color: #DD0031;
+}
+
+[data-skill="mysql"] {
+  background-color: #007599;
+}
+
+[data-skill="postgresql"] {
+  background-color: #336791;
+}
+
+[data-skill="mongodb"] {
+  background-color: #47A248;
+}
+
+[data-skill="apache"] {
+  background-color: #D22128;
+}
+
+[data-skill="linux"] {
+  background-color: #FCC624;
+}
+

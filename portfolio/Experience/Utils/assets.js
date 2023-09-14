@@ -2,16 +2,11 @@ export default [
     {
         name: "office",
         type: "glbModel",
-        path: "/public/models/officev11.glb"
+        path: "/models/officev11.glb"
     },
     {
         name: "screen",
         type: "videoTexture",
-        path: "/public/textures/testvid.mp4"
+        path: "/textures/testvid.mp4"
     },
-    {
-        name: "pfp",
-        type: "texture",
-        path: "/public/textures/pfp3.jpeg"
-    }
 ]

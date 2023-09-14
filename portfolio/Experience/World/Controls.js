@@ -27,6 +27,7 @@ export default class Controls {
 
     this.setSmoothScroll();
     this.setScrollTrigger();
+    this.initSkillBars();
   }
 
   // original code from: https://codepen.io/GreenSock/pen/rNyyxBP?editors=1010
@@ -78,6 +79,43 @@ export default class Controls {
   setSmoothScroll() {
     this.asscroll = this.setupASScroll()
   }
+
+  initSkillBars() {
+    const skillBars = document.querySelectorAll(".skill-bar");
+  
+    skillBars.forEach((bar) => {
+      const targetWidth = bar.dataset.targetWidth || "100%";
+      const skill = bar.dataset.skill;
+      const percentageCircle = bar.querySelector('.percentage-circle') || bar.nextElementSibling;
+  
+      GSAP.fromTo(
+        bar,
+        { width: "0%" },
+        {
+          width: targetWidth,
+          scrollTrigger: {
+            trigger: bar,
+            start: "top 70%",
+            end: "top 30%",
+            scrub: 0.5,
+            onUpdate: function () {
+              const currentWidth = parseFloat(bar.style.width);
+              const targetWidthNumber = parseFloat(targetWidth);
+              const threshold = 0.7; // You can change this to whatever value you want. This is set to 70%.
+  
+              if (currentWidth >= (targetWidthNumber * threshold)) {
+                // Set the percentage circle text once the bar is within the threshold of its target
+                percentageCircle.textContent = targetWidth;
+              }
+            }
+          }
+        }
+      );
+    });
+  }
+  
+  
+  
 
   setScrollTrigger() {
     ScrollTrigger.matchMedia({
